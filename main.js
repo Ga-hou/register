@@ -28,7 +28,7 @@ http.createServer((req,res)=>{
     console.log(`用户访问的:${url.parse(req.url).pathname}`);
 
     if(url.parse(req.url).pathname === `/${ranNum}`){
-        fs.readFile('./www/index.html',(err,data)=>{
+        fs.readFile('./www/test.html',(err,data)=>{
             if(err){
                 return console.log(err);
             }
