@@ -48,7 +48,15 @@ setInterval(() => {
         }
         //微信浏览器
         else if (ranstr == req.url.substring(1, 8) && (req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) == 'micromessenger')){
-            res.send('wechat');
+            fs.readFile('./www/wechat.html', (err, data) => {
+                if (err) {
+                    res.send('请使用手机浏览器打开');
+                }
+                else {
+                    res.write(data);
+                    res.end();
+                }
+            }); 
         }
         else {
             fs.readFile('./www/test.html', (err, data) => {
