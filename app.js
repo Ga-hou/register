@@ -25,27 +25,14 @@ app.listen(3000,()=>{
 });
 
 app.get('/',(req,res)=>{
-    res.send('/////')
-/*     fs.readFile('./www/notFound.html', (err, data) => {
-        if (err) {
-            res.send('404NOTFUND');
-        }
-        else{
-            res.send(data);
-        }
-    }); */
+    res.send('404')
 });
 
 setInterval(() => {
     ranstr = randomstring.generate(7);
     console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
     app.get(`/${ranstr}`, (req, res) => {
-        var ips = [];
-        ips.push(getIP(req));
-        console.log(ips);
         console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
-        // console.log(`user ip: ${getIP(req)}`);
-        
         if(ranstr!=req.url.substring(1,8)){
             fs.readFile('./www/fail.html',(err,data)=>{
                 if(err){
@@ -72,13 +59,14 @@ setInterval(() => {
 }, 30000)
 
 app.get('/qrcode', (req, res) => {
-    console.log(`请求一次${n++}`);
     var params = qs.parse(req.url.split('?')[1]);
     var fn = params.callback;
     res.jsonp({ params, ranstr });
 });
 app.get('/login',(req,res)=>{
     conn.query(`select * from stu_info where ip = '${getIP(req)}'`,(err,result)=>{
+        console.log(`result: ${result}`);
+        console.log(`err: ${err}`);
         if (result!='') {
             fs.readFile('./www/once.html',(err,data)=>{
                 if(err){
