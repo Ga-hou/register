@@ -1,3 +1,5 @@
+import { getHashes } from 'crypto';
+
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
@@ -32,6 +34,8 @@ setInterval(() => {
     ranstr = randomstring.generate(7);
     console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
     app.get(`/${ranstr}`, (req, res) => {
+        console.log(`header: ${req.getHeader('User-Agent')}`);
+        
         console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
         if(ranstr!=req.url.substring(1,8)){
             fs.readFile('./www/fail.html',(err,data)=>{
@@ -47,7 +51,7 @@ setInterval(() => {
         else {
             fs.readFile('./www/test.html', (err, data) => {
                 if (err) {
-                    res.send('404NOTFUND')
+                    res.send('404NOTFUND');
                 }
                 else {
                     res.write(data);
@@ -77,7 +81,7 @@ app.get('/login',(req,res)=>{
                     res.write(data);
                     res.end();
                 }
-            })
+            });
         }
         else {
             var arg = url.parse(req.url).query;
@@ -95,7 +99,7 @@ app.get('/login',(req,res)=>{
                             res.write(data);
                             res.end();
                         }
-                    })
+                    });
                 }
                 else {
                     fs.readFile('./www/success.html', (err, data) => {
@@ -108,11 +112,11 @@ app.get('/login',(req,res)=>{
                             res.write(data);
                             res.end();
                         }
-                    })
+                    });
                 }
             });
         }   
-    })
+    });
 })
 
 
