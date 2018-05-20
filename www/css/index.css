@@ -128,3 +128,7 @@ input[type=submit],[type=reset]{
     margin: 0 auto;
     margin-top: 65%;
 }
+.txa {
+    text-align: center;
+    font-size: 40px;
+}

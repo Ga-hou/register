@@ -40,11 +40,22 @@ setInterval(() => {
     ranstr = randomstring.generate(7);
     console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
     app.get(`/${ranstr}`, (req, res) => {
+        var ips = [];
+        ips.push(getIP(req));
+        console.log(ips);
         console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
-        console.log(`user ip: ${getIP(req)}`);
+        // console.log(`user ip: ${getIP(req)}`);
         
         if(ranstr!=req.url.substring(1,8)){
-            res.send('二维码失效');
+            fs.readFile('./www/fail.html',(err,data)=>{
+                if(err){
+                    res.send('二维码已过期');
+                }
+                else{
+                    res.write(data);
+                    res.end();
+                }
+            })
         }
         else {
             fs.readFile('./www/test.html', (err, data) => {
@@ -119,12 +130,11 @@ app.get('/login',(req,res)=>{
 
 
 function getIP(req) {
-    var ip = req.headers['x-forwarded-for'];
-/*          ||
+    var ip = req.headers['x-forwarded-for'] ||
         req.ip ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress || ''; */
+        req.connection.socket.remoteAddress || ''; 
     if (ip.split(',').length > 0) {
         ip = ip.split(',')[0]
     }
