@@ -13,7 +13,7 @@ let n = 0;
 const conn = sql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: '000000',
     database: 'register',
     port: '3306'
 });
@@ -38,7 +38,7 @@ app.get('/',(req,res)=>{
 
 setInterval(() => {
     ranstr = randomstring.generate(7);
-    console.log(`更新: http://192.168.191.1:3000/${ranstr}`);
+    console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
     app.get(`/${ranstr}`, (req, res) => {
         if(ranstr!=req.url.substring(1)){
             res.send('二维码失效');
@@ -72,7 +72,8 @@ app.get('/login',(req,res)=>{
                     res.send('只能签到一次')
                 }
                 else{
-                    res.send(data);
+                    res.write(data);
+                    res.end();
                 }
             })
         }
@@ -89,7 +90,8 @@ app.get('/login',(req,res)=>{
                             res.send('签到失败');
                         }
                         else{
-                            res.send(data);
+                            res.write(data);
+                            res.end();
                         }
                     })
                 }
@@ -101,7 +103,8 @@ app.get('/login',(req,res)=>{
                             res.send('签到成功');
                         }
                         else {
-                            res.send(data);
+                            res.write(data);
+                            res.end();
                         }
                     })
                 }
