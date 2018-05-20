@@ -1,5 +1,3 @@
-import { getHashes } from 'crypto';
-
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
@@ -34,10 +32,10 @@ setInterval(() => {
     ranstr = randomstring.generate(7);
     console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
     app.get(`/${ranstr}`, (req, res) => {
-        console.log(`header: ${req.Headers('User-Agent')}`);
+        console.log(`header: ${req.headers['user-agent']}`);
         
         console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
-        if (ranstr != req.url.substring(1, 8) && !(req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) =='micromessenger')){
+        if (ranstr != req.url.substring(1, 8)){
             fs.readFile('./www/fail.html',(err,data)=>{
                 if(err){
                     res.send('二维码已过期');
@@ -48,7 +46,8 @@ setInterval(() => {
                 }
             })
         }
-        else if (ranstr != req.url.substring(1, 8) && (req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) == 'micromessenger')){
+        //微信浏览器
+        else if (ranstr == req.url.substring(1, 8) && (req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) == 'micromessenger')){
             res.send('wechat');
         }
         else {
