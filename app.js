@@ -34,10 +34,10 @@ setInterval(() => {
     ranstr = randomstring.generate(7);
     console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
     app.get(`/${ranstr}`, (req, res) => {
-        console.log(`header: ${req.getHeader('User-Agent')}`);
+        console.log(`header: ${req.Headers('User-Agent')}`);
         
         console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
-        if(ranstr!=req.url.substring(1,8)){
+        if (ranstr != req.url.substring(1, 8) && !(req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) =='micromessenger')){
             fs.readFile('./www/fail.html',(err,data)=>{
                 if(err){
                     res.send('二维码已过期');
@@ -47,6 +47,9 @@ setInterval(() => {
                     res.end();
                 }
             })
+        }
+        else if (ranstr != req.url.substring(1, 8) && (req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) == 'micromessenger')){
+            res.send('wechat');
         }
         else {
             fs.readFile('./www/test.html', (err, data) => {
