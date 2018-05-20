@@ -119,7 +119,7 @@ app.get('/login',(req,res)=>{
 
 
 function getIP(req) {
-    var ip = req.headers['x-forwarded-for'][0];
+    var ip = req.headers['x-forwarded-for'];
 /*          ||
         req.ip ||
         req.connection.remoteAddress ||
