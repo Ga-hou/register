@@ -39,8 +39,10 @@ app.get('/',(req,res)=>{
 setInterval(() => {
     ranstr = randomstring.generate(7);
     console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
-    console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
     app.get(`/${ranstr}`, (req, res) => {
+        console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
+        console.log(`user ip: ${getIP(req)}`);
+        
         if(ranstr!=req.url.substring(1,8)){
             res.send('二维码失效');
         }
