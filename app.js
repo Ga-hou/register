@@ -39,8 +39,9 @@ app.get('/',(req,res)=>{
 setInterval(() => {
     ranstr = randomstring.generate(7);
     console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
+    console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
     app.get(`/${ranstr}`, (req, res) => {
-        if(ranstr!=req.url.substring(1)){
+        if(ranstr!=req.url.substring(1,8)){
             res.send('二维码失效');
         }
         else {
@@ -116,11 +117,12 @@ app.get('/login',(req,res)=>{
 
 
 function getIP(req) {
-    var ip = req.headers['x-forwarded-for'] ||
+    var ip = req.headers['x-forwarded-for'][0];
+/*          ||
         req.ip ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress || '';
+        req.connection.socket.remoteAddress || ''; */
     if (ip.split(',').length > 0) {
         ip = ip.split(',')[0]
     }
