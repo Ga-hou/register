@@ -13,7 +13,7 @@ let n = 0;
 const conn = sql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '000000',
+    password: '123456',
     database: 'register',
     port: '3306'
 });
@@ -30,11 +30,8 @@ app.get('/',(req,res)=>{
 
 setInterval(() => {
     ranstr = randomstring.generate(7);
-    console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
+    //console.log(`更新: http://119.23.231.123:3000/${ranstr}`);
     app.get(`/${ranstr}`, (req, res) => {
-        console.log(`header: ${req.headers['user-agent']}`);
-        
-        console.log(`req.url.substring(1,8): ${req.url.substring(1, 8)}`);
         if (ranstr != req.url.substring(1, 8)){
             fs.readFile('./www/fail.html',(err,data)=>{
                 if(err){
@@ -47,7 +44,7 @@ setInterval(() => {
             })
         }
         //微信浏览器
-        else if (ranstr == req.url.substring(1, 8) && (req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) == 'micromessenger')){
+        /* else if (ranstr == req.url.substring(1, 8) && (req.headers["user-agent"].toLowerCase().match(/MicroMessenger/i) == 'micromessenger')){
             fs.readFile('./www/wechat.html', (err, data) => {
                 if (err) {
                     res.send('请使用手机浏览器打开');
@@ -57,7 +54,7 @@ setInterval(() => {
                     res.end();
                 }
             }); 
-        }
+        } */
         else {
             fs.readFile('./www/test.html', (err, data) => {
                 if (err) {
@@ -79,8 +76,6 @@ app.get('/qrcode', (req, res) => {
 });
 app.get('/login',(req,res)=>{
     conn.query(`select * from stu_info where ip = '${getIP(req)}'`,(err,result)=>{
-        console.log(`result: ${result}`);
-        console.log(`err: ${err}`);
         if (result!='') {
             fs.readFile('./www/once.html',(err,data)=>{
                 if(err){
