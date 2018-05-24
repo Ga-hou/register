@@ -50,11 +50,11 @@ ul{
     margin-left: 25%;
     margin-top: 0rem;
     opacity: 0;
-    animation: show 1s ease-in-out 3.6s;
+    /* animation: show 1s ease-in-out 3.6s;
     -webkit-animation: show 1s ease-in-out 3.6s;
     -moz-animation: show 1s ease-in-out 3.6s;
     animation-fill-mode:forwards;
-    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards; */
 }
 .mountain{
     position: relative;
@@ -64,10 +64,10 @@ ul{
     height: 11rem;
     margin-top: -10rem;
     margin-left: 5%;
-    z-index:  4;
-    animation: gradual 1s ease-in-out;
+    z-index:  0;
+    /* animation: gradual 1s ease-in-out;
     -webkit-animation: gradual 1s ease-in-out;
-    -moz-animation: gradual 1s ease-in-out;
+    -moz-animation: gradual 1s ease-in-out; */
 }
 .form_css{
     width: 100%;
@@ -262,11 +262,11 @@ input[type=submit],[type=reset]{
     margin: 0 auto;
     margin-top: -60%;
     opacity: 0;
-    animation: word 1s ease-in-out 4.6s;
+    /* animation: word 1s ease-in-out 4.6s;
     -webkit-animation: word 1s ease-in-out 4.6s;
     -moz-animation: word 1s ease-in-out 4.6s;
     animation-fill-mode:forwards;
-    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards; */
 }
 .txa {
     text-align: center;
@@ -274,4 +274,15 @@ input[type=submit],[type=reset]{
 }
 .tips {
     font-size: 2rem;
+}
+
+
+
+/*尝试减少动画*/
+.des{
+    animation: word 1s ease-in-out;
+    -webkit-animation: word 1s ease-in-out;
+    -moz-animation: word 1s ease-in-out;
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;
 }

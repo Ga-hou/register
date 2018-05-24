@@ -6,7 +6,7 @@ $.ajax({
     jsonpCallback: "onBack",
     dataType: "jsonp",
     success: function (response) {
-        qrcode = new QRCode(document.getElementById("qrcode"), `http://www.javatribe.org01:3000/${response.ranstr}`);
+        qrcode = new QRCode(document.getElementById("qrcode"), `http://www.javatribe.org:3000/${response.ranstr}`);
     },
     error: function(){
 
