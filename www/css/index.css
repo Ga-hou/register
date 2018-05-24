@@ -7,7 +7,7 @@ html,body{
 body{
     margin: 0;
     padding: 0;
-    background: url('../img/背景.png') no-repeat center fixed;
+    background: url('../img/背景.jpg') no-repeat center fixed;
     background-size: 100% 100%;
     overflow: hidden;
     overflow-x:hidden;
@@ -16,7 +16,7 @@ ul{
     padding: 0;
     margin: 0;
     position: relative;
-    margin-top: -24rem;
+    margin-top: -27rem;
     z-index: 5;
 }
 .contain{
@@ -49,6 +49,12 @@ ul{
     background-size: 60%;
     margin-left: 25%;
     margin-top: 0rem;
+    opacity: 0;
+    animation: show 1s ease-in-out 3.6s;
+    -webkit-animation: show 1s ease-in-out 3.6s;
+    -moz-animation: show 1s ease-in-out 3.6s;
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;
 }
 .mountain{
     position: relative;
@@ -59,28 +65,37 @@ ul{
     margin-top: -10rem;
     margin-left: 5%;
     z-index:  4;
+    animation: gradual 1s ease-in-out;
+    -webkit-animation: gradual 1s ease-in-out;
+    -moz-animation: gradual 1s ease-in-out;
 }
 .form_css{
     width: 100%;
     position: absolute;
     vertical-align: middle;
     margin: 0 auto;
-    margin-top: -6rem;
+    height: 0;
+    margin-top: -11rem;
     text-align: center;
     text-align: -moz-center;
     text-align: -webkit-center;
+    overflow: hidden;
+    animation: waterdown 3s ease-in-out 0.8s;
+    -webkit-animation: waterdown 3s ease-in-out 0.8s;
+    -moz-animation: waterdown 3s ease-in-out 0.8s;
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;
 }
 .water{
     position: relative;
-    background: url(../img/泉水下.png) no-repeat;
-    height: 30rem;
+    background: url(../img/泉水.png) no-repeat;
+    height: 35rem;
     background-size: 90%;
     margin-left: 10%;
-    z-index:  3;
 }
 input{
     width: 20rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     line-height: 3rem;
     text-align: center;
     text-align: -moz-center;
@@ -91,7 +106,12 @@ input{
     border:1px solid #8c8a8a;
     box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.1);
     animation: moving 3s linear infinite;
+    -webkit-animation: moving 3s linear infinite;
+    -moz-animation: moving 3s linear infinite;
+    background: white;
+    opacity: 0.5;
 }
+/*表单边框发光效果动画*/
 @keyframes moving{
     0%{
         box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.1);
@@ -109,6 +129,122 @@ input{
         box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.1);
     }
 }
+/*山逐渐显示动画效果*/
+@keyframes gradual{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5  
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/*整个泉水water下拉显示效果*/
+@keyframes waterdown{
+    0%{
+        height: 0%;
+    }
+    33%{
+        height: 30%;
+    }
+    66%{
+        height: 60%;
+    }
+    100%{
+        height:100%;
+    }
+}
+/*投影显示效果*/
+@keyframes show{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+/*字体逐渐显示效果*/
+@keyframes word{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5  
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/*表单边框发光效果动画*/
+@-webkit-keyframes moving{
+    0%{
+        box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.1);
+    }
+    25%{
+        box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.3);
+    }
+    50%{
+        box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.5);
+    }
+    75%{
+        box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.3);
+    }
+    100%{
+        box-shadow:0 0 9px 3px rgba(255, 255, 255, 0.1);
+    }
+}
+/*山逐渐显示动画效果*/
+@-webkit-keyframes gradual{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5  
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/*整个泉水water下拉显示效果*/
+@-webkit-keyframes waterdown{
+    0%{
+        height: 0%;
+    }
+    33%{
+        height: 30%;
+    }
+    66%{
+        height: 60%;
+    }
+    100%{
+        height:100%;
+    }
+}
+/*投影显示效果*/
+@-webkit-keyframes show{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+/*字体逐渐显示效果*/
+@-webkit-keyframes word{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5  
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
 input[type=text]{
     display: block;
     margin-bottom: 2rem;
@@ -117,16 +253,20 @@ input[type=submit],[type=reset]{
     margin: auto 2.5rem;
     width: 7.5rem;
     line-height: 3rem;
-    font-size:  1.5rem;
 }
 .title{
     position: relative;
     background: url(../img/字体.png) no-repeat;
     background-size: 100%;
-    width: 16rem;
-    height: 10rem;
+    height: 150%;
     margin: 0 auto;
-    margin-top: 65%;
+    margin-top: -60%;
+    opacity: 0;
+    animation: word 1s ease-in-out 4.6s;
+    -webkit-animation: word 1s ease-in-out 4.6s;
+    -moz-animation: word 1s ease-in-out 4.6s;
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;
 }
 .txa {
     text-align: center;
