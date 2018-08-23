@@ -2,8 +2,8 @@
 ***
 ## 使用技术:
 
-- 后端: Node.js [express]{http://www.expressjs.com.cn/}
-- 前端: 移动端 + jQuery + [jQuery-qrcore]{https://github.com/jeromeetienne/jquery-qrcode}
+- 后端: Node.js [express](http://www.expressjs.com.cn/)
+- 前端: 移动端 + jQuery + [jQuery-qrcore](https://github.com/jeromeetienne/jquery-qrcode)
 - 数据库: MySQL
 
 ## 需求
